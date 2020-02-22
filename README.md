@@ -1,32 +1,55 @@
-### python2多线程扫描Tomcat-Ajp协议文件读取漏洞
-刷src分狗的福利
-poc来源于[https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/)，加以修改
+# Python 2.x 多线程扫描 Tomcat-Ajp 协议文件读取漏洞
+
+poc 来源于[https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi/)，加以修改
+
+**注：仅供学习，严禁非法使用**
+
 ## 操作
-### 1、将需要扫描的域名/ip放于 ip.txt
-ip.txt中不需要加协议，比如
+
+### 将需要扫描的 IP 或域名放于 `ip.txt`
+
+ip.txt中不需要加协议，比如：
+
 ```
 127.0.0.1
 www.baidu.com
 www.google.com
 ```
-### 2、python threading-find-port-8009.py
-将会生成8009.txt，作用为扫描ip.txt中域名/ip找出开放8009端口
-### 3、python threading-CNVD-2020-10487-Tomcat-Ajp-lfi.py
-从8009.txt中筛选出符合漏洞的url,放置于vul.txt中
-`最后vul.txt中存在的域名即为含有漏洞的域名`
-亲测补天公益src有上百站点，教育src大概三百站点包含此漏洞
-![](1.png)
-### 4、测试
-拿 CNVD-2020-10487-Tomcat-Ajp-lfi.py测试即可
-`python CNVD-2020-10487-Tomcat-Ajp-lfi.p target.com`
-## 本项目仅供学习，严禁用于非法操作
-ps1:两个脚本的最后一行均为线程数-默认是20，可自行修改      
-位于threading-find-port-8009.py 67行              
-threading-CNVD-2020-10487-Tomcat-Ajp-lfi.py 341行         
 
-```
-thread_num=20
+src 域名收集文件夹中为本人收集的教育src和补天src的一些域名，可直接测试
+
+### 批量扫描 `8009` AJP 端口开放情况
+
+```bash
+python threading-find-port-8009.py
 ```
 
+这将会生成 `8009.txt`，作用为扫描 `ip.txt` 中 IP 或域名，并找出开放的 `8009` 端口
 
-ps2:src域名收集文件夹中为本人收集的教育src和补天src的一些域名，可直接测试
+### 筛选可利用漏洞的 Tomcat Server
+
+```bash
+python threading-CNVD-2020-10487-Tomcat-Ajp-lfi.py
+```
+
+从 `8009.txt` 中筛选出符合漏洞的 IP 或域名，放置于 `vul.txt` 中，最后 `vul.txt` 中存在的域名即为含有漏洞的 IP 或域名
+
+测试可知，补天公益src有上百站点，教育src大概三百站点包含此漏洞
+
+![漏洞扫描](1.png)
+
+### 漏洞利用测试
+
+```bash
+python CNVD-2020-10487-Tomcat-Ajp-lfi.p target.com
+```
+
+两个脚本的最后一行均为线程数，默认是 `20`，可自行修改，分别位于：
+
+- `threading-find-port-8009.py` 的 67 行
+
+- `threading-CNVD-2020-10487-Tomcat-Ajp-lfi.py` 的 341 行
+
+```python
+thread_num = 20
+```
