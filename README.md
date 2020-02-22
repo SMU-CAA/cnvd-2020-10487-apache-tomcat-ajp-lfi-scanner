@@ -4,6 +4,8 @@
 
 基于 Python 2.x，可以批量扫描 Apache Tomcat AJP 协议文件读取漏洞（Python 3.x 简单修改可用）
 
+具体可查看：[CNVD 公开信息](https://www.cnvd.org.cn/flaw/show/CNVD-2020-10487)
+
 漏洞影响版本：
 
 - Apache Tomcat 7 < 7.0.100
