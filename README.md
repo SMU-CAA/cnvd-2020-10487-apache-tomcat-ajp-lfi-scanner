@@ -1,4 +1,8 @@
-# Python 2.x 多线程扫描 Tomcat-Ajp 协议文件读取漏洞
+# CNVD-2020-10487 (CVE-2020-1938) 漏洞扫描工具
+
+**注：仅供学习，严禁非法使用**
+
+基于 Python 2.x，可以批量扫描 Apache Tomcat AJP 协议文件读取漏洞（Python 3.x 简单修改可用）
 
 漏洞影响版本：
 
@@ -8,15 +12,15 @@
 
 - Apache Tomcat 9 < 9.0.31
 
-PoC 来源于[CNVD-2020-10487-Tomcat-Ajp-lfi](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi)，并加以修改
+此漏洞为 LFI (Local File Inclusion)，但有可能构造为 RCE (Remote Code Execution)
 
-**注：仅供学习，严禁非法使用**
+PoC 来源并修改于 [CNVD-2020-10487-Tomcat-Ajp-lfi-Scanner](https://github.com/Kit4y/CNVD-2020-10487-Tomcat-Ajp-lfi-Scanner) 与 [CNVD-2020-10487-Tomcat-Ajp-lfi](https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi)
 
 ## 操作
 
 ### 将需要扫描的 IP 或域名放于 `ip.txt`
 
-ip.txt中不需要加协议，比如：
+`ip.txt` 中不需要加协议，比如：
 
 ```
 127.0.0.1
