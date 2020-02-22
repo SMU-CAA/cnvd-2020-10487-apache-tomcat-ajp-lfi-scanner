@@ -48,7 +48,7 @@ python threading-CNVD-2020-10487-Tomcat-Ajp-lfi.py
 
 从 `8009.txt` 中筛选出符合漏洞的 IP 或域名，放置于 `vul.txt` 中，最后 `vul.txt` 中存在的域名即为含有漏洞的 IP 或域名
 
-测试可知，补天公益src有上百站点，教育src大概三百站点包含此漏洞
+测试可知，补天公益 SRC 有 100+ 站点，教育 SRC 大概 300 站点包含此漏洞
 
 ![漏洞扫描](1.png)
 
